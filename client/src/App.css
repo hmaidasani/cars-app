@@ -1,0 +1,21 @@
+.App {
+  
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 1vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.App-Body {
+  padding: 20px;
+}
+
+.complex-search-container {
+  margin-top: 100px;
+}

@@ -1,0 +1,41 @@
+version: '1.0'
+
+services:
+  server:
+    image: 'server'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: npm run dev
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    environment:
+      - DB_USER=postgres
+      - DB_PASSWORD=carspassword
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_DATABASE=carsdb
+  client:
+    image: 'client'
+    build:
+      context: ./client
+      dockerfile: ./Dockerfile
+    ports:
+      - 3000:3000
+  db:
+    container_name: postgresdb
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: carsdb
+      POSTGRES_PASSWORD: carspassword
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+    volumes:
+      - ./scripts/db/init.sql:/docker-entrypoint-initdb.d/init.sql
