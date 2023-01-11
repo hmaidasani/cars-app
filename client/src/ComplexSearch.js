@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Row, Col, Table, Form, FormControl, FormGroup, Button } from 'react-bootstrap';
 import ComplexSearchTools from './ComplexSearchTools';
+import './ComplexSearch.css'
 
 // const data_local = [
 //   {"car_id":1,"car_model":"Car_One","brand_id":1,"brand_name":"Brand_One","company_id":1,"company_name":"Mercedes"},
@@ -22,13 +23,11 @@ function ComplexSearch() {
   const [sortOrder, setSortOrder] = useState('asc');
   const [dataToShow, setDataToShow] = useState([]);
 
-
   useEffect(() => {
     async function fetchData() {
       const response = await fetch('http://localhost:8000/cars_db');
       const json = await response.json();
       setData(json);
-      console.log('fetch');
     }
     fetchData();
     // console.log('setData local');
@@ -58,7 +57,7 @@ function ComplexSearch() {
     }
 
     setDataToShow(filteredData);
-    console.log(filteredData);
+    // console.log(filteredData);
   }, [searchTerm, searchColumn, sortColumn, sortOrder, data]);
 
   const handleSearch = (event) => {
@@ -114,12 +113,24 @@ function ComplexSearch() {
         <Table striped bordered hover size="sm">
             <thead>
             <tr>
-                <th onClick={() => handleSort('car_id')}>Car ID</th>
-                <th onClick={() => handleSort('car_model')}>Car Model</th>
-                <th onClick={() => handleSort('brand_id')}>Brand ID</th>
-                <th onClick={() => handleSort('brand_name')}>Brand Name</th>
-                <th onClick={() => handleSort('company_id')}>Company ID</th>
-                <th onClick={() => handleSort('company_name')}>Company Name</th>
+                <th className='th-sortable' onClick={() => handleSort('car_id')}>
+                    <span className={`sort-by ${sortColumn=='car_id'?'active':''} ${sortOrder=='asc'?'asc':'desc'}`}>Car ID</span>
+                </th>
+                <th className='th-sortable' onClick={() => handleSort('car_model')}>
+                    <span className={`sort-by ${sortColumn=='car_model'?'active':''} ${sortOrder=='asc'?'asc':'desc'}`}>Car Model</span>
+                </th>
+                <th className='th-sortable' onClick={() => handleSort('brand_id')}>
+                    <span className={`sort-by ${sortColumn=='brand_id'?'active':''} ${sortOrder=='asc'?'asc':'desc'}`}>Brand ID</span>
+                </th>
+                <th className='th-sortable' onClick={() => handleSort('brand_name')}>
+                    <span className={`sort-by ${sortColumn=='brand_name'?'active':''} ${sortOrder=='asc'?'asc':'desc'}`}>Brand Name</span>
+                </th>
+                <th className='th-sortable' onClick={() => handleSort('company_id')}>
+                    <span className={`sort-by ${sortColumn=='company_id'?'active':''} ${sortOrder=='asc'?'asc':'desc'}`}>Company ID</span>
+                </th>
+                <th className='th-sortable' onClick={() => handleSort('company_name')}>
+                    <span className={`sort-by ${sortColumn=='company_name'?'active':''} ${sortOrder=='asc'?'asc':'desc'}`}>Company Name</span>
+                </th>
             </tr>
             </thead>
             <tbody>
