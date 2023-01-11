@@ -33,6 +33,5 @@ The server can be accessed at `localhost:8000` and the client at `localhost:3000
 - As data grows, Table pagination
 - As data grows, search on the backend since postgres faster
 - Add modals should have select options of existing companies or brands
-- Add modals success should refresh table
 - Full CRUD on backend and frontend
 - Graphql maybe
