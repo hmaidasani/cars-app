@@ -33,3 +33,5 @@ app.use((err, req, res, next) => {
 //Starting the express server
 app.listen(app.get("port"));
 console.log("Server on port", app.get("port"));
+
+module.exports = app;
