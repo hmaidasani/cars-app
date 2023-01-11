@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Row, Col, Table, Form, FormControl, FormGroup, Modal, Button } from 'react-bootstrap';
 
-function ComplexSearchTools() {
+function ComplexSearchTools(props) {
     const [showCompanyCreateModal, setShowCompanyCreateModal] = useState(false);
     const [showBrandCreateModal, setShowBrandCreateModal] = useState(false);
     const [showCarCreateModal, setShowCarCreateModal] = useState(false);
@@ -78,6 +78,7 @@ function ComplexSearchTools() {
             if(response.ok) {
                 const data = await response.json();
                 setShowCarCreateModal(false);
+                props.setRefreshData(true);
                 //   setResults(data);
             } else {
                 // show error to user

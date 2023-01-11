@@ -22,17 +22,19 @@ function ComplexSearch() {
   const [sortColumn, setSortColumn] = useState('car_id');
   const [sortOrder, setSortOrder] = useState('asc');
   const [dataToShow, setDataToShow] = useState([]);
+  const [refreshData, setRefreshData] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
       const response = await fetch('http://localhost:8000/cars_db');
       const json = await response.json();
       setData(json);
+      setRefreshData(false)
     }
     fetchData();
     // console.log('setData local');
     // setData(data_local);
-  }, []);
+  }, [refreshData]);
 
   useEffect(() => {
     let filteredData = [...data];
@@ -106,7 +108,7 @@ function ComplexSearch() {
                     </FormGroup>
                 </Col>
                 <Col xs="auto">
-                    <ComplexSearchTools />
+                    <ComplexSearchTools setRefreshData={setRefreshData}/>
                 </Col>
             </Row>
         </Form>
