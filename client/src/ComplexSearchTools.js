@@ -28,8 +28,13 @@ function ComplexSearchTools() {
                 }),
                 headers: { 'Content-Type': 'application/json' },
               });
-            const data = await response.json();
-        //   setResults([car]);
+              if(response.ok) {
+                const data = await response.json();
+                setShowCompanyCreateModal(false);
+            //   setResults(data);
+              } else {
+                // show error to user
+              }
         } catch (error) {
           console.error(error);
         }
@@ -46,8 +51,13 @@ function ComplexSearchTools() {
                 }),
                 headers: { 'Content-Type': 'application/json' },
               });
-            const data = await response.json();
-        //   setResults([car]);
+              if(response.ok) {
+                const data = await response.json();
+                setShowBrandCreateModal(false);
+                //   setResults(data);
+              } else {
+                // show error to user
+              }
         } catch (error) {
           console.error(error);
         }
@@ -64,8 +74,14 @@ function ComplexSearchTools() {
                 }),
                 headers: { 'Content-Type': 'application/json' },
               });
-            const data = await response.json();
-        //   setResults([car]);
+            
+            if(response.ok) {
+                const data = await response.json();
+                setShowCarCreateModal(false);
+                //   setResults(data);
+            } else {
+                // show error to user
+            }
         } catch (error) {
           console.error(error);
         }
