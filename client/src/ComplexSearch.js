@@ -95,7 +95,7 @@ function ComplexSearch() {
                         <Form.Select 
                             className="mb-2"
                             onChange={handleColumnChange} 
-                            value={sortColumn}>
+                            value={searchColumn}>
                                 <option disabled>Search By</option>
                                 <option value="car_id">Car ID</option>
                                 <option value="car_model">Car Model</option>
